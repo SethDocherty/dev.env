@@ -17,7 +17,7 @@ The manifests themselves are just trimmed down exports from WingetUI of applicat
 - **Device Applications**
 - **Other**
 
-Since they are JSON formatted, I can easily extract the list of applications from the Winget section and automate the install with Winget.  While I could do this through WingetUI by importing the manifests, I personally want to use the flexibility of Winget's CLI features (*and in less clicks FTW*). The overall goal of the **InstallManifests** PowerShell script is to avoid the process of manually reinstalling applications with a system that can quickly replicate my ideal suite of applications on a new machine.
+Since they are JSON formatted, I can easily extract the list of applications from the Winget section and automate the install with Winget.  While I could do this through WingetUI by importing the manifests, I personally want to use the flexibility of Winget's CLI features (*and in less clicks FTW*). The overall goal of the [**InstallManifests**](InstallManifests.ps1) PowerShell script is to avoid the process of manually reinstalling applications with a system that can quickly replicate my ideal suite of applications on a new machine.
 
 ### Running the Script
 
