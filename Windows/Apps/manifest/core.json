@@ -48,7 +48,9 @@
                   "PackageIdentifier": "Microsoft.VCRedist.2015+.x86"
                 },
                 {
-                  "PackageIdentifier": "Microsoft.VisualStudioCode"
+                  "PackageIdentifier": "Microsoft.VisualStudioCode",
+                  "customArgs": "/SILENT /mergetasks=\"!runcode,addcontextmenufiles,addcontextmenufolders\""
+
                 },
                 {
                   "PackageIdentifier": "Microsoft.WindowsTerminal"
@@ -79,6 +81,9 @@
                 },
                 {
                   "PackageIdentifier": "WinSCP.WinSCP"
+                },
+                {
+                  "PackageIdentifier": "CrystalDewWorld.CrystalDiskMark"
                 }
               ],
               "SourceDetails": {
