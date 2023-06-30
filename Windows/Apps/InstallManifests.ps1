@@ -56,17 +56,21 @@ param (
 )
 
 # If additional manifest files are created, please add file name to this list
-$validManifests = "core", "dev", "device_apps", "other", "all", "full"
+# "all" and "full" tags are used to install all manifests.
+$validManifests = "all", "full", "core", "dev", "device_apps", "other"
 
 Function get_apps_from_manifest([string[]]$file_names) {
     # Define the predefined JSON object
     $schema_version = "https://aka.ms/winget-packages.schema.2.0.json"
     $predefinedJson = @{
         '$schema' = $schema_version
-        "CreationDate" = '2023-06-26 14:54:28.455066'
-        "WinGetVersion" = "1.4.11071"
+        "CreationDate" = "2023-06-26 14:54:28.455066"
+        "WinGetVersion" = "1.5.1572"
         'Sources' = @()
     }
+    
+    [System.Array]$manifestSources = @()
+    $manifest_packages = @()
 
     # Get the current directory
     $currentDirectory = Get-Location
@@ -94,15 +98,59 @@ Function get_apps_from_manifest([string[]]$file_names) {
             $jsonUrl = "https://raw.githubusercontent.com/SethDocherty/dev.env/main/Windows/Apps/manifest/$file_name.json"
             $jsonObject = Invoke-RestMethod -Uri $jsonUrl
         }
-        # Extract the desired section and store it in a variable
-        $packages = $jsonObject.winget.Sources
+        # Extract the desired section and store it to our array
+        $manifest_packages += $jsonObject.winget.Sources[0].Packages
     
         # Add the extracted section to the "Sources" array
-        $predefinedJson.Sources += $packages
+        # $predefinedJson.Sources += $packages
+        # $manifest_packages += $packages
     }
 
-    # Convert the modified object to JSON format
-    return $predefinedJson | ConvertTo-Json -Depth 10
+    # Add SourceDetails Key/Value. Using last one in to populate e.g. using SourceDetails from last file referenced.
+    $manifestSources.SourceDetails = $jsonObject.winget.Sources.SourceDetails
+
+    # Return the predefinedJson with all the packages to be installed
+    # Install any apps that contain custom arguments
+    $tmp = custom_app_install -input_apps $manifest_packages
+    $predefinedJson.Sources = $manifestSources# | ConvertTo-Json -Depth 10
+    return $predefinedJson
+}
+
+
+function custom_app_install {
+    param (
+        [Parameter(Mandatory=$true)]
+        [array]$input_apps 
+    )
+
+    $remaining_apps = @()
+
+    # $sourceDetails = @()#$input_apps.SourceDetails
+    # $remaining_apps.SourceDetails = $input_apps.SourceDetails
+
+    foreach ($package in $input_apps) {
+        # Find package with customArgs keys
+        $custom_install = $package | Where-Object { $null -ne $_.customArgs}
+        
+        if ($custom_install) {
+            # Run custom installation command using "customArgs" value
+            $customArgs = $custom_install.customArgs
+            Write-Host "Running custom installation for package: $($custom_install.PackageIdentifier)"
+    
+            # Run the custom installation command using winget
+            winget install --id $custom_install.PackageIdentifier --exact --accept-source-agreements --disable-interactivity --accept-source-agreements --override $customArgs
+
+            # Remove the package
+            # $input_apps = $input_apps | Where-Object { $_.PackageIdentifier -ne $custom_install.PackageIdentifier }
+        }
+        else {
+            # Package doesn't have customArgs, add it to the remaining apps list
+            # Write-Host "Adding $package"
+            $remaining_apps += $package
+        }
+    }
+    # $remaining_apps.SourceDetails = $sourceDetails
+    return $remaining_apps
 }
 
 <#
@@ -124,6 +172,17 @@ if ($invalidManifests) {
 
 # Call the get_apps_from_manifest function with the selected file names
 $app_listing = get_apps_from_manifest -file_names $selectedManifests
+
+# Install any apps that contain custom arguments
+# $app_listing.Sources = custom_app_install -input_apps $app_listing.Sources.Packages
+# $app_listing.Sources = $app_listing.Sources | ForEach-Object {
+#     $_.Packages = custom_app_install -input_apps $_.Packages
+#     $_
+# }
+
+
+# Convert the hashtable object to JSON
+$app_listing | ConvertTo-Json -Depth 10
 
 # Temporary json file that contains only winget apps
 # NOTE: File is saved to `C:\Users\<user name>\AppData\Local\Temp`
