@@ -1,4 +1,4 @@
-﻿<#
+<#
     .SYNOPSIS
     Automate the installation of Windows applications from one or more app manifests using the native package manager, WinGet. 
 
@@ -172,14 +172,7 @@ if ($invalidManifests) {
 
 # Call the get_apps_from_manifest function with the selected file names
 $app_listing = get_apps_from_manifest -file_names $selectedManifests
-
-# Install any apps that contain custom arguments
-# $app_listing.Sources = custom_app_install -input_apps $app_listing.Sources.Packages
-# $app_listing.Sources = $app_listing.Sources | ForEach-Object {
-#     $_.Packages = custom_app_install -input_apps $_.Packages
-#     $_
-# }
-
+Write-Host "Preparing to Install $($app_listing.Sources[0].Packages.count) Packages....." -ForegroundColor Green
 
 # Convert the hashtable object to JSON
 $app_listing | ConvertTo-Json -Depth 10
