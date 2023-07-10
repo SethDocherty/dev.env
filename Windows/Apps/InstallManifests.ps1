@@ -100,10 +100,6 @@ Function get_apps_from_manifest([string[]]$file_names) {
         }
         # Extract the desired section and store it to our array
         $manifest_packages += $jsonObject.winget.Sources[0].Packages
-    
-        # Add the extracted section to the "Sources" array
-        # $predefinedJson.Sources += $packages
-        # $manifest_packages += $packages
     }
 
     # Add SourceDetails Key/Value. Using last one in to populate e.g. using SourceDetails from last file referenced.
