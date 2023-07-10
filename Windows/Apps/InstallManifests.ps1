@@ -125,9 +125,6 @@ function custom_app_install {
 
     $remaining_apps = @()
 
-    # $sourceDetails = @()#$input_apps.SourceDetails
-    # $remaining_apps.SourceDetails = $input_apps.SourceDetails
-
     foreach ($package in $input_apps) {
         # Find package with customArgs keys
         $custom_install = $package | Where-Object { $null -ne $_.customArgs}
@@ -135,17 +132,14 @@ function custom_app_install {
         if ($custom_install) {
             # Run custom installation command using "customArgs" value
             $customArgs = $custom_install.customArgs
-            Write-Host "Running custom installation for package: $($custom_install.PackageIdentifier)"
+            Write-Host "Running custom installation for package: $($custom_install.PackageIdentifier)" -ForegroundColor Cyan
     
             # Run the custom installation command using winget
             winget install --id $custom_install.PackageIdentifier --exact --accept-source-agreements --disable-interactivity --accept-source-agreements --override $customArgs
 
-            # Remove the package
-            # $input_apps = $input_apps | Where-Object { $_.PackageIdentifier -ne $custom_install.PackageIdentifier }
         }
         else {
             # Package doesn't have customArgs, add it to the remaining apps list
-            # Write-Host "Adding $package"
             $remaining_apps += $package
         }
     }
