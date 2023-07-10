@@ -102,8 +102,8 @@ Function get_apps_from_manifest([string[]]$file_names) {
         $manifest_packages += $jsonObject.winget.Sources[0].Packages
     }
 
-    # Add SourceDetails Key/Value. Using last one in to populate e.g. using SourceDetails from last file referenced.
-    $manifestSources.SourceDetails = $jsonObject.winget.Sources.SourceDetails
+    # Add SourceDetails Key/Value & Packages Array. Using last one in to populate e.g. using SourceDetails from last file referenced.
+    $manifestSources += $jsonObject.winget.Sources
 
     # Return the predefinedJson with all the packages to be installed
     # Install any apps that contain custom arguments
