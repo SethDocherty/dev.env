@@ -109,6 +109,8 @@ Function get_apps_from_manifest([string[]]$file_names) {
     # Install any apps that contain custom arguments and Pipe return object through filter to remove any non "PSCustomObject" types.
     $non_custom_apps = custom_app_install -input_apps $manifest_packages | Where-Object { $_ -is [System.Management.Automation.PSCustomObject] }
     
+    # Update the "Packages" key in `manifestSources`
+    $manifestSources[0].Packages = $non_custom_apps  
     $predefinedJson.Sources = $manifestSources# | ConvertTo-Json -Depth 10
     return $predefinedJson
 }
