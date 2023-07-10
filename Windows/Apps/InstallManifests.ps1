@@ -175,7 +175,7 @@ $app_listing = get_apps_from_manifest -file_names $selectedManifests
 Write-Host "Preparing to Install $($app_listing.Sources[0].Packages.count) Packages....." -ForegroundColor Green
 
 # Convert the hashtable object to JSON
-$app_listing | ConvertTo-Json -Depth 10
+$app_listing = $app_listing | ConvertTo-Json -Depth 10
 
 # Temporary json file that contains only winget apps
 # NOTE: File is saved to `C:\Users\<user name>\AppData\Local\Temp`
