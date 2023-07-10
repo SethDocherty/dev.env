@@ -50,7 +50,6 @@
                 {
                   "PackageIdentifier": "Microsoft.VisualStudioCode",
                   "customArgs": "/SILENT /mergetasks=\"!runcode,addcontextmenufiles,addcontextmenufolders\""
-
                 },
                 {
                   "PackageIdentifier": "Microsoft.WindowsTerminal"
