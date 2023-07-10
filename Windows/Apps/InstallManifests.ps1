@@ -70,7 +70,7 @@ Function get_apps_from_manifest([string[]]$file_names) {
     }
     
     [System.Array]$manifestSources = @()
-    $manifest_packages = @()
+    [System.Array]$manifest_packages = @()
 
     # Get the current directory
     $currentDirectory = Get-Location
