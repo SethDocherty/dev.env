@@ -28,6 +28,9 @@
                     },
                     {
                         "PackageIdentifier": "WireGuard.WireGuard"
+                    },
+                    {
+                        "PackageIdentifier": "XPFFZHVGQWWLHB"
                     }
                 ],
                 "SourceDetails": {
