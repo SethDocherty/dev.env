@@ -15,8 +15,9 @@ Getting up and running with a fresh Windows reinstall or even setting up a VM fo
 1. Clone **dev.env** repo down to your local machine if it hasn't already.
 2. Open PowerShell and change the Current Working Directory (CWD) to the ***Apps*** folder.
 
-   > **Tip**: You can open PowerShell directly from the *Apps* folder in file explorer by typing *PowerShell* in the address bar.
+   > **:eyes: ProTip**: You can open PowerShell directly from the *Apps* folder in File Explorer by typing *PowerShell* in the address bar or `Shift + Right Click` in File Explorer.
    >
+
 3. Running the following command installs applications from `core.json` by default.
 
 ```PowerShell
@@ -51,6 +52,8 @@ Get-Help ".\InstallManifests.ps1" -full
 
 The manifests themselves are just trimmed down JSON exports from [WingetUI](https://github.com/marticliment/WingetUI) that contain applications installed on my local machine. Manifests can easily be organized into thematic flavors by modifying the **Packages** array within the Winget section of the exported JSON file. The *Packages* array is composed of one or more key/value structures where [PackageIdentifier](https://github.com/microsoft/winget-cli/blob/9200b51529978b3ae031edd5ca6d585625381eb5/schemas/JSON/packages/packages.schema.2.0.json#L76C19-L76C19) contains the unique ID used by the Windows Package Manager to identify an application. Optional properties such as **Version** can be added to specify the exact version to install and **customArgs** which uses the `--override` option to pass a string that's passed directly to the installer.
 
+> **Note**: While the **customArgs** property is not apart of the standard [winget schema](https://learn.microsoft.com/en-us/windows/package-manager/winget/import#json-schema), the script will automatically process any applications that contain this property. This provides the flexibility to customize the installation of an application with the  `--override` option.
+
 ```json
 {
   "Packages":[
@@ -63,6 +66,6 @@ The manifests themselves are just trimmed down JSON exports from [WingetUI](http
 }
 ```
 
-For more info on the `--override` option, check out the following resources: [1](https://github.com/microsoft/winget-cli/discussions/1798),[2](https://learn.microsoft.com/en-us/visualstudio/install/use-command-line-parameters-to-install-visual-studio?view=vs-2019#use-winget-to-install-or-modify-visual-studio),[3](https://www.techwatching.dev/posts/winget-override),[4](https://www.devjev.nl/posts/2022/getting-along-with-winget-advanced-installation/),[5](https://winaero.com/install-a-winget-app-with-custom-arguments-and-command-line-switches/)
+For more info on the `--override` option, check out the following resources: [1](https://github.com/microsoft/winget-cli/discussions/1798), [2](https://learn.microsoft.com/en-us/visualstudio/install/use-command-line-parameters-to-install-visual-studio?view=vs-2019#use-winget-to-install-or-modify-visual-studio), [3](https://www.techwatching.dev/posts/winget-override), [4](https://www.devjev.nl/posts/2022/getting-along-with-winget-advanced-installation/), [5](https://winaero.com/install-a-winget-app-with-custom-arguments-and-command-line-switches/), [6](https://learn.microsoft.com/en-us/windows/package-manager/package/manifest?tabs=minschema%2Cversion-example#installer-switches)
 
 > **Note**: While **WingetUI** can import and install the application manifests, it currently does not have the ability to parse additional properties such as **Version** and pass in custom commands to the `--override` option. **WingetUI** comes into play as it wraps an easy to use GUI around the Winget package manager (and others such as Scoop, Chocolatey, and more) to easily download, install, update and uninstall software.
