@@ -182,3 +182,16 @@ winget import --import-file $winget_apps
 
 # Delete the temporary file once done
 Remove-Item -Path $winget_apps -Force
+
+# Wait for user action to exit script and close console window.
+# Note, if script is executed from an already open console, window does not close.
+Write-Host "Press any key to close the window..."
+
+while (-not [System.Console]::KeyAvailable) {
+    Start-Sleep -Milliseconds 100
+}
+
+# Clear any queued key presses
+while ([System.Console]::KeyAvailable) {
+    $null = [System.Console]::ReadKey($true)
+}
