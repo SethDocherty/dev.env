@@ -204,6 +204,7 @@ cython_debug/
 ### Misc ###
 .DS_Store
 *.lock
+!Windows/Apps/manifest
 
 ### We want to include this file.  Adding this after the *.lock flag ensures poetry.lock files are not ignored
 !/poetry.lock
