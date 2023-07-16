@@ -4,9 +4,9 @@ This section contains an assortment of tools and guides to aid in streamlining t
 
 ## Table of contents
 
-[Automate the Installation of a Fresh Install](#automate-the-installation-of-a-fresh-install)
+[Install Applications from Manifests](#install-applications-from-manifests)
 
-## Automate the Installation of a Fresh Install
+## Install Applications from Manifests
 
 Getting up and running with a fresh Windows reinstall or even setting up a VM for testing is a tedious and time consuming process when it comes to installing applications. Instead of the typical *"What applications did I have installed?"* conundrum, I've built JSON formatted manifests to track the applications I use. These manifests make it easier to automate the tedious installation process with the help of [Winget](https://github.com/microsoft/winget-cli), the Windows package manager.  The overall goal of the [**InstallManifests**](InstallManifests.ps1) PowerShell script is to avoid the process of manually reinstalling applications with a system that can quickly replicate my ideal suite of applications on a new machine.
 
@@ -15,9 +15,8 @@ Getting up and running with a fresh Windows reinstall or even setting up a VM fo
 1. Clone **dev.env** repo down to your local machine if it hasn't already.
 2. Open PowerShell and change the Current Working Directory (CWD) to the ***Apps*** folder.
 
-   > **:eyes: ProTip**: You can open PowerShell directly from the *Apps* folder in File Explorer by typing *PowerShell* in the address bar or `Shift + Right Click` in File Explorer.
+   > **👀 ProTip**: You can open PowerShell directly from the *Apps* folder in File Explorer by typing *PowerShell* in the address bar or `Shift + Right Click` in File Explorer.
    >
-
 3. Running the following command installs applications from `core.json` by default.
 
 ```PowerShell
