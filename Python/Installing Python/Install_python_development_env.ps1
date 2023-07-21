@@ -210,4 +210,16 @@ Here's a list of the current configuration:`r`n" -ForegroundColor Cyan
 poetry config --list | Write-Host -ForegroundColor Cyan
 Write-Host "`r`n     Learn more about the poetry CLI by running the 'poetry list' command." -BackgroundColor Blue
 poetry list | Write-Host -ForegroundColor Cyan
-pause
+
+# Wait for user action to exit script and close console window.
+# Note, if script is executed from an already open console, window does not close.
+Write-Host "Press any key to close the window..."
+
+while (-not [System.Console]::KeyAvailable) {
+    Start-Sleep -Milliseconds 100
+}
+
+# Clear any queued key presses
+while ([System.Console]::KeyAvailable) {
+    $null = [System.Console]::ReadKey($true)
+}
