@@ -148,7 +148,7 @@ Remove-Item $env:USERPROFILE\AppData\Local\Microsoft\WindowsApps\python*.exe
 
 # Run install_pyenv function
 Write-Host $msg_header -ForegroundColor Green
-Write-Host $msg_overview -ForegroundColor Green
+Write-Host $msg_overview -ForegroundColor White
 Write-Host $msg_pyenv_install -ForegroundColor Green
 Install_pyenv
 
