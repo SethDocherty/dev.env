@@ -134,12 +134,16 @@ Function refresh_env() {
 Remove-Item $env:USERPROFILE\AppData\Local\Microsoft\WindowsApps\python*.exe
 
 # Run install_pyenv function
+Write-Host $msg_header -ForegroundColor Green
+Write-Host $msg_overview -ForegroundColor Green
+Write-Host $msg_pyenv_install -ForegroundColor Green
 Install_pyenv
 
 # Get input from user. This is optional
-$input_python_version = Read-host "Enter Python version to install otherwise press enter to skip (Default version is $($default_install_version))"
+Write-Host -NoNewLine "Enter Python version to install otherwise press enter to skip (Default version is $($default_install_version)): " -ForegroundColor Green
+$input_python_version = Read-host
 if ($input_python_version -eq '' -or
-    $input_python_version -eq $false ) {
+$input_python_version -eq $false ) {
     $install_version = $default_install_version
 }
 else {
@@ -162,11 +166,11 @@ else {
 }
 
 # Install Poetry
-Write-Host "Installing Poetry....:" -ForegroundColor Green
+Write-Host $msg_poetry_install -ForegroundColor Green
 (Invoke-WebRequest -ErrorAction Stop -Uri https://install.python-poetry.org -UseBasicParsing).Content  | python - 
 
 # Remove existing paths, so we don't add duplicates
-Write-Host "Don't worry, were going to ensure that the `poetry` command has been added to your 'PATH' environment variable settings."
+Write-Host "Don't worry, were going to ensure that the `poetry` command has been added to your 'PATH' environment variable settings." -ForegroundColor Cyan
 $PathParts = [System.Environment]::GetEnvironmentVariable('PATH', "User") -Split ";"
 $path_check = $PathParts.Where{ $_ -eq $Poetry_exe }
 if ($path_check.count -eq 0) {
