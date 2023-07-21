@@ -194,7 +194,8 @@ if ($path_check.count -eq 0) {
 refresh_env
 
 # Print some helpful details for the user
-Write-Host "Finished installing pyenv-win and Poetry. Your python development environment is now ready." -ForegroundColor Green
+Write-Host $msg_finish -ForegroundColor Green
+Write-Host "Pyenv-win and Poetry have been installed. Your python development environment is now ready." -ForegroundColor Cyan
 Write-Host "`r`n     Details about the global python interpreter:" -BackgroundColor Blue
 Write-Host "Global Python interpreter is set to $(pyenv global)
 Full path to python.exe: $(pyenv which python)" -ForegroundColor Cyan
@@ -204,7 +205,7 @@ Write-Host "`r`n     Learn more about the pyenv-win CLI by running the 'pyenv he
 pyenv help | Write-Host -ForegroundColor Cyan
 Write-Host "`r`n     Details about your Poetry Installation:" -BackgroundColor Blue
 poetry about | Write-Host -ForegroundColor Cyan
-Write-Host "`r`nPoetry settings can be configured via the CLI with the 'poetry config' command or manually via the config.toml file found at $("${env:APPDATA}\pypoetry"))
+Write-Host "`r`nPoetry settings can be configured via the CLI with the 'poetry config' command or manually via the config.toml file found at `r`n$("${env:APPDATA}\pypoetry")`r`n
 Here's a list of the current configuration:`r`n" -ForegroundColor Cyan
 poetry config --list | Write-Host -ForegroundColor Cyan
 Write-Host "`r`n     Learn more about the poetry CLI by running the 'poetry list' command." -BackgroundColor Blue
