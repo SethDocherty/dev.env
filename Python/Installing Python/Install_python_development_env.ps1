@@ -69,9 +69,9 @@ $msg_poetry_install = @"
 
 $msg_overview = @"
 
-This script prepares your python environment by automating the download, installation and configuration of your system environment with pyenv-win and poetry. 
+This script prepares your python environment by automating the download, installation and configuration of your system environment with pyenv-win and poetry.
 
-To begin...
+Following the installation of the tools you will find details about about your python development environment.
 
 "@
 
