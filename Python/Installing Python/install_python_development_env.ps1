@@ -36,6 +36,61 @@ $default_install_version = "3.9.13"
 $install_version = ''
 $Poetry_exe = "${env:APPDATA}\Python\Scripts"
 
+### Splash Screen Messages
+$msg_header = @'
+  __          __  _                          _                                                            
+  \ \        / / | |                        | |                                                           
+   \ \  /\  / /__| | ___ ___  _ __ ___   ___| |                                                           
+    \ \/  \/ / _ \ |/ __/ _ \| '_ ` _ \ / _ \ |                                                           
+     \  /\  /  __/ | (_| (_) | | | | | |  __/_|                                                           
+      \/  \/ \___|_|\___\___/|_| |_| |_|\___(_)                                                           
+-------------------------------------------------                                                                                                                                                                                                                                                                                        
+'@
+
+$msg_pyenv_install = @'
+ _____           _        _ _ _                _____                                       _             
+|_   _|         | |      | | (_)              |  __ \                                     (_)            
+  | |  _ __  ___| |_ __ _| | |_ _ __   __ _   | |__) |   _  ___ _ ____   __________      ___ _ __        
+  | | | '_ \/ __| __/ _` | | | | '_ \ / _` |  |  ___/ | | |/ _ \ '_ \ \ / /______\ \ /\ / / | '_ \       
+ _| |_| | | \__ \ || (_| | | | | | | | (_| |  | |   | |_| |  __/ | | \ V /        \ V  V /| | | | |_ _ _ 
+|_____|_| |_|___/\__\__,_|_|_|_|_| |_|\__, |  |_|    \__, |\___|_| |_|\_/          \_/\_/ |_|_| |_(_|_|_)
+                                       __/ |          __/ |                                              
+                                      |___/          |___/                                               
+
+'@
+
+$msg_poetry_install = @'
+ _____           _        _ _ _                _____           _                                         
+|_   _|         | |      | | (_)              |  __ \         | |                                        
+  | |  _ __  ___| |_ __ _| | |_ _ __   __ _   | |__) |__   ___| |_ _ __ _   _                            
+  | | | '_ \/ __| __/ _` | | | | '_ \ / _` |  |  ___/ _ \ / _ \ __| '__| | | |                           
+ _| |_| | | \__ \ || (_| | | | | | | | (_| |  | |  | (_) |  __/ |_| |  | |_| |_ _ _                      
+|_____|_| |_|___/\__\__,_|_|_|_|_| |_|\__, |  |_|   \___/ \___|\__|_|   \__, (_|_|_)                     
+                                       __/ |                             __/ |                           
+                                      |___/                             |___/                            
+
+'@
+
+$msg_overview = @"
+This script prepares your python environment by automating the download, installation and configuration of your system environment with pyenv-win and poetry.
+
+Following the installation of the tools you will find details about about your python development environment.
+
+"@
+
+$msg_finish = @'
+ ______ _       _     _              _ _ 
+|  ____(_)     (_)   | |            | | |
+| |__   _ _ __  _ ___| |__   ___  __| | |
+|  __| | | '_ \| / __| '_ \ / _ \/ _` | |
+| |    | | | | | \__ \ | | |  __/ (_| |_|
+|_|    |_|_| |_|_|___/_| |_|\___|\__,_(_)
+
+'@
+
+#-----------------------------------
+
+
 Function Install_pyenv() {
     $PyEnvDir = "${env:USERPROFILE}\.pyenv"
     if (Test-Path $PyEnvDir) {
@@ -92,12 +147,16 @@ Function refresh_env() {
 Remove-Item $env:USERPROFILE\AppData\Local\Microsoft\WindowsApps\python*.exe
 
 # Run install_pyenv function
+Write-Host $msg_header -ForegroundColor Green
+Write-Host $msg_overview -ForegroundColor White
+Write-Host $msg_pyenv_install -ForegroundColor Green
 Install_pyenv
 
 # Get input from user. This is optional
-$input_python_version = Read-host "Enter Python version to install otherwise press enter to skip (Default version is $($default_install_version))"
+Write-Host -NoNewLine "Enter Python version to install otherwise press enter to skip (Default version is $($default_install_version)): " -ForegroundColor Green
+$input_python_version = Read-host
 if ($input_python_version -eq '' -or
-    $input_python_version -eq $false ) {
+$input_python_version -eq $false ) {
     $install_version = $default_install_version
 }
 else {
@@ -120,11 +179,11 @@ else {
 }
 
 # Install Poetry
-Write-Host "Installing Poetry....:" -ForegroundColor Green
+Write-Host $msg_poetry_install -ForegroundColor Green
 (Invoke-WebRequest -ErrorAction Stop -Uri https://install.python-poetry.org -UseBasicParsing).Content  | python - 
 
 # Remove existing paths, so we don't add duplicates
-Write-Host "Don't worry, were going to ensure that the `poetry` command has been added to your 'PATH' environment variable settings."
+Write-Host "Don't worry, were going to ensure that the `poetry` command has been added to your 'PATH' environment variable settings." -ForegroundColor Cyan
 $PathParts = [System.Environment]::GetEnvironmentVariable('PATH', "User") -Split ";"
 $path_check = $PathParts.Where{ $_ -eq $Poetry_exe }
 if ($path_check.count -eq 0) {
@@ -135,7 +194,8 @@ if ($path_check.count -eq 0) {
 refresh_env
 
 # Print some helpful details for the user
-Write-Host "Finished installing pyenv-win and Poetry. Your python development environment is now ready." -ForegroundColor Green
+Write-Host $msg_finish -ForegroundColor Green
+Write-Host "Pyenv-win and Poetry have been installed. Your python development environment is now ready." -ForegroundColor Cyan
 Write-Host "`r`n     Details about the global python interpreter:" -BackgroundColor Blue
 Write-Host "Global Python interpreter is set to $(pyenv global)
 Full path to python.exe: $(pyenv which python)" -ForegroundColor Cyan
@@ -145,9 +205,21 @@ Write-Host "`r`n     Learn more about the pyenv-win CLI by running the 'pyenv he
 pyenv help | Write-Host -ForegroundColor Cyan
 Write-Host "`r`n     Details about your Poetry Installation:" -BackgroundColor Blue
 poetry about | Write-Host -ForegroundColor Cyan
-Write-Host "`r`nPoetry settings can be configured via the CLI with the 'poetry config' command or manually via the config.toml file found at $("${env:APPDATA}\pypoetry"))
+Write-Host "`r`nPoetry settings can be configured via the CLI with the 'poetry config' command or manually via the config.toml file found at `r`n$("${env:APPDATA}\pypoetry")`r`n
 Here's a list of the current configuration:`r`n" -ForegroundColor Cyan
 poetry config --list | Write-Host -ForegroundColor Cyan
 Write-Host "`r`n     Learn more about the poetry CLI by running the 'poetry list' command." -BackgroundColor Blue
 poetry list | Write-Host -ForegroundColor Cyan
-pause
+
+# Wait for user action to exit script and close console window.
+# Note, if script is executed from an already open console, window does not close.
+Write-Host "Press any key to close the window..."
+
+while (-not [System.Console]::KeyAvailable) {
+    Start-Sleep -Milliseconds 100
+}
+
+# Clear any queued key presses
+while ([System.Console]::KeyAvailable) {
+    $null = [System.Console]::ReadKey($true)
+}
