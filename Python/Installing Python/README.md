@@ -37,6 +37,6 @@ After Poetry is installed, you'll find a printout out containing details about t
 
 ## Resources
 
-- Visit the [documentation](https://python-poetry.org/docs/basic-usage/) for more information on using Poetry and how it manages project library dependencies and much more.
+- Visit the [documentation](https://python-poetry.org/docs/basic-usage/) for more information on using Poetry, how it manages project library dependencies and much more.
 
 - Visit the [pyenv-win documentation](https://pyenv-win.github.io/pyenv-win/) for additional details about the commands and its usage.
