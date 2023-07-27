@@ -1,11 +1,11 @@
 [tool.poetry]
-name = "{{library_name}}"
+name = "{{package_name}}"
 version = "0.1.0"
 description = ""
 authors = ["SethDocherty <sddocherty@gmail.com>"]
 readme = "README.md"
 repository = "https://github.com/<user name>/<repo name>"
-packages = [{include = "{{library_name}}"}]
+packages = [{include = "{{package_name}}"}]
 
 [tool.poetry.dependencies]
 python = "3.10.*"
@@ -22,7 +22,7 @@ pre-commit = "^3.3.3"
 pdoc3 = "^0.10.0"
 
 [tool.poetry.scripts]
-create_task = "{{library_name}}.util.create_tasks:create"
+create_task = "{{package_name}}.util.create_tasks:create"
 
 [tool.pytest.ini_options]
 # Details on configuration options can be found here: 
