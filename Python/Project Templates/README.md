@@ -15,11 +15,17 @@ This template is the result of my years refining the best way to structure a pro
 This template allows you to:
 
 ✅ Create a readable structure for your project
+
 ✅ Automatically run tests when committing your code
+
 ✅ Enforce type hints at runtime
+
 ✅ Check issues in your code before committing
+
 ✅ Efficiently manage the dependencies in your project
+
 ✅ Create short and readable commands for repeatable tasks
+
 ✅ Automatically document your code
 
 ## Tools used in this Project Template
