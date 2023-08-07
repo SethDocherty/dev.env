@@ -1,0 +1,119 @@
+[tool.poetry]
+name = "{{ cookiecutter.__package_name }}"
+version = "0.1.0"
+description = "{{ cookiecutter.description }}"
+authors = ["{{ cookiecutter.author_name}} <{{ cookiecutter.email }}>"]
+readme = "README.md"
+repository = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.__package_name }}"
+license = "{{ cookiecutter.license }}"
+packages = [
+    { include = "{{ cookiecutter.__package_name }}" },
+    { include = "tests"},
+]
+
+[tool.poetry.dependencies]
+python = "3.10.*"
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.7.0"
+mypy = "^1.4.1"
+pylint = "^2.17.4"
+isort = "^5.12.0"
+pytest = "^7.4.0"
+pytest-cov = "^4.1.0"
+pytest-clarity = "^1.0.1"
+pre-commit = "^3.3.3"
+pdoc3 = "^0.10.0"
+ruff = "^0.0.282"
+cookiecutter = "2.3.0"
+
+[tool.poetry.scripts]
+create_task = "{{ cookiecutter.__package_name }}.utils.create_tasks:create"
+test_task = "{{ cookiecutter.__package_name }}.main:main"
+
+[tool.pytest.ini_options]
+# Details on configuration options can be found here:
+#  - https://docs.pytest.org/en/latest/reference/reference.html#ini-options-ref
+cache_dir = "tests/.pytest_cache"
+testpaths = [
+    "tests",
+]
+python_files = [
+    "*_tests.py",
+    ]
+# Adding command-line arguments for pytest-clarity
+addopts = "-vv --diff-symbols"
+
+[tool.black]
+line-length = 88
+
+include = '''
+(
+    \.pyi?$
+| ^/tests/
+)
+'''
+
+exclude = '''
+/(
+	^\.git
+| ^\.mypy_cache
+| __pycache__
+| ^\.venv
+)/
+'''
+
+[tool.mypy]
+# Vist link to get more info on rules: https://mypy.readthedocs.io/en/stable/config_file.html
+exclude = [
+    '.venv',
+]
+
+pretty = "True"
+show_column_numbers = "True"
+show_error_context = "True"
+
+[tool.ruff]
+# The directories to consider/allow import relative to the project root directory.
+src = ["test"]
+
+# A list of rule codes or prefixes to enable
+# Vist link to get more info on rules: https://beta.ruff.rs/docs/rules/
+ignore = ["E501"]
+select = ["B","C","E","F","W","B9", "I", "Q", "ISC", "INP", "PTH", "FLY", "PERF", "RUF"]
+
+# Allow autofix for all enabled rules (when `--fix`) is provided.
+# Note, if using pre-commit, ensure that ruff is placed before other formatting tool
+# hooks as the autofix behavior can output code changes that require reformatting.
+fix = true
+unfixable = []
+
+# Enumerate all fixed violations and the associated violation id.
+show-fixes = true
+
+# Common file and directory settings to include/exclude.
+include = ["*.py", "*.pyi", "**/pyproject.toml", "*.ipynb"]
+exclude = [
+    "__pycache__",
+    "__pypackages__",
+    ".direnv",
+    ".eggs",
+    ".git-rewrite",
+    ".git",
+    ".mypy_cache",
+    ".pytest_cache",
+    ".pytype",
+    ".ruff_cache",
+    ".tox",
+    ".venv",
+    "build",
+    "dist",
+    "venv",
+]
+
+# Same as Black.
+line-length = 88
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
