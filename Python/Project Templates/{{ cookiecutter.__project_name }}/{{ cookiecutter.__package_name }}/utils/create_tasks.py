@@ -37,7 +37,7 @@ def get_task_properties(
 
     task_properties = {
         "xml": {
-            "WorkingDirectory": Path(cf.CONFIG_DIR, "project_resources"),
+            "WorkingDirectory": Path(cf.PACAKGE_DIR, "resources"),
             "FileName": "project_task.xml",
         },
         "task action": {
