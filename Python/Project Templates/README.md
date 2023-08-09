@@ -45,33 +45,33 @@ This template allows you to:
     ├── data                               # Directory used to organize data used for inputs, outputs and temporary data
     ├── docs                               # Directory containing multiple markdown files and/or other resource documentation for your project
     ├── notebooks                          # Directory to store notebooks
+    ├── tests                              # Directory containing tests
+    │   └── __init__.py                    # Treat directories contained within tests as modules 
     ├── {{ cookiecutter.__package_name }}  # Directory that contains your package source code for one or more modules
     │   ├── __init__.py                    # Treat directories contained within {{ cookiecutter.__package_name }} as modules
     │   ├── resources                      # Directory containing various files that the the package references. These files are not intended to be modified.
-    │       ├── project_task.xml           # XML template file used when creating a scheduled windows task
+    │   │   └── project_task.xml           # XML template file used when creating a scheduled windows task
     │   ├── utils                          # Module containing project specific resources 
-    │       ├── __init__.py                # Treat directories contained within utils as modules
-    │       ├── create_tasks.py            # Poetry script to deploy scheduled tasks.  Run the following command for more details: `poetry run create_task --help`
+    │   │   ├── __init__.py                # Treat directories contained within utils as modules
+    │   │   └── create_tasks.py            # Poetry script to deploy scheduled tasks.
     │   ├── main.py                        # Default main script
-    │   ├── config.py                      # Store logic to initialize values found in the config directory
-    └── tests                              # Directory containing tests
-        ├── __init__.py                    # Treat directories contained within tests as modules 
+    │   └── config.py                      # Store logic to initialize values found in the config directory
     ├── .gitignore                         # File specifying files/directories to ignore as not to commit to Git
     ├── .pre-commit-config.yaml            # Configuration file for pre-commit hooks
     ├── LICENSE                            # Project license file. Choice of "MIT", "BSD", "Apache", "GNU General Public License", "ISC", "Other/Proprietary License"
     ├── poetry.lock                        # Poetry file containing all packages and their exact versions that it downloaded based on dependencies found in poetry.toml
     ├── poetry.toml                        # File containing project specific configurations that override global configurations for Poetry
     ├── pyproject.toml                     # Poetry file containing project dependencies
-    ├── README.md                          # Markdown file used to describe your project
+    └── README.md                          # Markdown file used to describe your project
 ```
 
 ## How to use this Template
 
 1. Clone **dev.env** repo down to your local machine if it hasn't already.
-2. Open PowerShell and change the Current Working Directory (CWD) to ***Python\Template Structure*** folder.
+2. Open your command line tool of choice and change the Current Working Directory (CWD) to ***Python\Template Structure*** folder.
 
    > **👀 ProTip**: You can open PowerShell directly from the *Template Structure* folder in File Explorer by typing *PowerShell* in the address bar or `Shift + Right Click` in File Explorer.
-
+   >
 3. Running the following command to install a **cookiecutter** dependent python environment.
 
 ```PowerShell
@@ -81,7 +81,7 @@ poetry install
 4. Next, activate the installed poetry environment by running the following command:
 
 ```PowerShell
-.\.venv\Scripts\activate
+poetry shell
 ```
 
 5. To deploy the cookiecutter template run:
@@ -94,19 +94,9 @@ You'll be asked a few questions which will be applied to settings up the project
 
 > Note: The "." in the command `cookiecutter .` will reference the cookiecutter template and generate a project directory structure in the CWD. If you would like to specify where to generate output, pass in the `-o, --output-dir <PATH>` command option.
 
-You will find a generated project directory where `{{ cookiecutter.__project_name }}` matches your input for the question, `project_name`. Move into that directory to setup the project environment
+You will find a generated project directory where `{{ cookiecutter.__project_name }}` matches your input for the question, `project_name`. Navigate into that directory and reference the [Project README](./{{%20cookiecutter.__project_name%20}}/README.md) to continue setting up the project environment.
 
 > Note: Don't forget to run the command `deactivate` to disable the poetry environment created in **step 3**.
-
-6. Run the following commands to setup git to version control your project and install the dependencies in `pyproject.toml`.
-
-```PowerShell
-git init .
-poetry install
-.\.venv\Scripts\activate
-```
-
-At this point, your environment is ready to go.
 
 ## Static Code Analysis Tools
 
@@ -116,37 +106,18 @@ At this point, your environment is ready to go.
 - **[Mypy](https://github.com/python/mypy)**: A type checker that verifies that your codebase follows its own type annotations aka type hints.
 - **[Ruff](https://github.com/astral-sh/ruff)**: An extremely fast error checker written in [Rust](https://www.rust-lang.org/), that identifies syntax errors or other code that will result in unhandled exceptions and crashes. It's a replacement of [Flake8](https://github.com/pycqa/flake8) and many of it's plugins.
 
-The linters above have also been integrated into a [pre-commit](https://pre-commit.com/#2-add-a-pre-commit-configuration) configuration file (file named `.pre-commit-config.yaml`) as to ensure that no bugs or issues appear in your code before pushing changes to your repo. To install the pre-commit git hooks:
-
-1. Run the following command:
-
-```bash
-pre-commit install
-```
-
-now `pre-commit` will run automatically on `git commit`.
-
-2. (Optional) Run against all files in your repo with the following command:
-
-```bash
-pre-commit run --all-files
-```
-
-### Adding more pre-commit plugins
-
-[Adding pre-commit plugins](https://pre-commit.com/#adding-pre-commit-plugins-to-your-project) to your project is done with the `.pre-commit-config.yaml` configuration file. To view a list of all supported plugins, visit this [link](https://pre-commit.com/hooks.html).
-
 ## Resources
 
 Below are additional resources I've referenced that are worth noting.
 
 #### Resources for Project Layout and Packaging
 
-- [My How and Why: pyproject.toml & the 'src' Project Structure – from python import logging – Thoughts and notes of a Python hobbyist](https://bskinn.github.io/My-How-Why-Pyproject-Src/)
-- [Testing & Packaging](https://hynek.me/articles/testing-packaging/)
-    > Not using a `src` folder is known as a flat-layout (also known as "adhoc") See [link](https://setuptools.pypa.io/en/latest/userguide/package_discovery.html#flat-layout) for more info.
+- [My How and Why: pyproject.toml &amp; the &#39;src&#39; Project Structure – from python import logging – Thoughts and notes of a Python hobbyist](https://bskinn.github.io/My-How-Why-Pyproject-Src/)
+- [Testing &amp; Packaging](https://hynek.me/articles/testing-packaging/)
+  > Not using a `src` folder is known as a flat-layout (also known as "adhoc") See [link](https://setuptools.pypa.io/en/latest/userguide/package_discovery.html#flat-layout) for more info.
+  >
 - [src layout vs flat layout — Python Packaging User Guide](https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/#src-layout-vs-flat-layout)
--[What the heck is pyproject.toml?](https://snarky.ca/what-the-heck-is-pyproject-toml/)
+- [What the heck is pyproject.toml?](https://snarky.ca/what-the-heck-is-pyproject-toml/)
 - [How to read a (static) file from inside a Python package?](https://stackoverflow.com/questions/6028000/how-to-read-a-static-file-from-inside-a-python-package/58941536#58941536)
 
 #### Resources Related to Cookiecutter

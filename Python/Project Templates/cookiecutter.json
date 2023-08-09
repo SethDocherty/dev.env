@@ -3,7 +3,7 @@
     "email": "reachme@email.com",
     "github_username": "sethdocherty",
     "project_name": "Package Template",
-    "__project_name": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
+    "__project_name": "{{ cookiecutter.project_name.replace(' ', '-').replace('_', '-') }}",
     "__package_name": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
     "description": "Enter a short description of your project",
     "license": ["MIT", "BSD", "Apache", "GNU General Public License", "ISC", "Other/Proprietary License"]
