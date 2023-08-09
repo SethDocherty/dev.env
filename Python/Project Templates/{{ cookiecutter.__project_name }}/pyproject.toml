@@ -28,8 +28,8 @@ ruff = "^0.0.282"
 cookiecutter = "2.3.0"
 
 [tool.poetry.scripts]
-create_task = "{{ cookiecutter.__package_name }}.utils.create_tasks:create"
-test_task = "{{ cookiecutter.__package_name }}.main:main"
+create-task = "{{ cookiecutter.__package_name }}.utils.create_tasks:create"
+run_main = "{{ cookiecutter.__package_name }}.main:main"
 
 [tool.pytest.ini_options]
 # Details on configuration options can be found here:
