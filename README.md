@@ -12,5 +12,5 @@ A suite of scripts, tools and resources for all things related to development.
 # Windows Resources
 
 **Table of Contents**:
-
-- [Automated Install of Windows Applications](./Windows/Apps)
+- [All Windows Application Resources](./Windows/Apps)
+- [Automated Install of Windows Applications](./Windows/Apps/README.md/#install-applications-from-manifests)
