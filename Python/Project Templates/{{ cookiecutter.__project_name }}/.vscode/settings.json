@@ -1,0 +1,63 @@
+{
+  //.....................
+  // GENERAL IDE SETTINGS
+  //.....................
+  "files.autoSave": "off",
+  "editor.bracketPairColorization.independentColorPoolPerBracketType": false,
+  "editor.minimap.renderCharacters": false,
+  "editor.rulers": [88],
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "files.trimTrailingWhitespace": true,
+  "search.showLineNumbers": true,
+  "testing.automaticallyOpenPeekView": "failureAnywhere",
+  "terminal.integrated.copyOnSelection": true,
+  "terminal.integrated.env.osx": {
+    "PYTHONPATH": "${env:PYTHONPATH}:${workspaceFolder}/{{ cookiecutter.__package_name }}"
+  },
+  "terminal.integrated.env.linux": {
+    "PYTHONPATH": "${env:PYTHONPATH}:${workspaceFolder}/{{ cookiecutter.__package_name }}"
+  },
+  "terminal.integrated.env.windows": {
+    "PYTHONPATH": "${env:PYTHONPATH};${workspaceFolder}\\{{ cookiecutter.__package_name }}"
+  },
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  "notebook.formatOnCellExecution": true,
+  "notebook.outline.showCodeCells": true,
+  "notebook.lineNumbers": "on",
+  //...................
+  // EXTENSION SETTINGS
+  //...................
+  "black-formatter.importStrategy": "fromEnvironment",
+  "cSpell.suggestionMenuType": "quickFix",
+  "css.format.spaceAroundSelectorSeparator": true,
+  "dash.exactDocset": true,
+  "git.autofetch": true,
+  "git.closeDiffOnOperation": true,
+  "git.confirmSync": false,
+  "git.openAfterClone": "whenNoFolderOpen",
+  "gitlens.showWelcomeOnInstall": true,
+  "gitlens.views.commits.files.layout": "tree",
+  "html.format.templating": true,
+  "html.format.indentInnerHtml": true,
+  "isort.check": true,
+  "isort.importStrategy": "fromEnvironment",
+  "jupyter.showVariableViewWhenDebugging": true,
+  "markdown.updateLinksOnFileMove.enabled": "prompt",
+  "merge-conflict.autoNavigateNextConflict.enabled": true,
+  "mypy.debugLogging": true,
+  "mypy.runUsingActiveInterpreter": true,
+  "powershell.codeFormatting.useConstantStrings": true,
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe",
+  "python.autoComplete.extraPaths": [
+    "${workspaceFolder}/data",
+    "${workspaceFolder}/config",
+    "${workspaceFolder}/tests",
+    "${workspaceFolder}/{{ cookiecutter.__package_name }}"
+  ],
+  "python.terminal.activateEnvironment": true,
+  "python.terminal.activateEnvInCurrentTerminal": true,
+  "python.testing.cwd": "./tests",
+  "python.testing.pytestEnabled": true,
+  "pythonTestExplorer.testFramework": "pytest"
+}

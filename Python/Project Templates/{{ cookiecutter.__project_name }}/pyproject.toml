@@ -8,7 +8,7 @@ repository = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecut
 license = "{{ cookiecutter.license }}"
 packages = [
     { include = "{{ cookiecutter.__package_name }}" },
-    { include = "tests"},
+    { include = "tests" },
 ]
 
 [tool.poetry.dependencies]
@@ -75,7 +75,7 @@ show_error_context = "True"
 
 [tool.ruff]
 # The directories to consider/allow import relative to the project root directory.
-src = ["test"]
+src = ["test", "{{ cookiecutter.__package_name }}"]
 
 # A list of rule codes or prefixes to enable
 # Vist link to get more info on rules: https://beta.ruff.rs/docs/rules/

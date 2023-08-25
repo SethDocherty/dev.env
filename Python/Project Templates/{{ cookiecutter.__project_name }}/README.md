@@ -14,6 +14,7 @@
 - [Setting up the Project Environment](#setting-up-the-project-environment)
 - [Installing Static Code Analysis Tools](#installing-static-code-analysis-tools)
 - [Scripts and Executables](#scripts-and-executables)
+- [VSCode Presets](#vscode-presets)
 
 ## Setting up the Project Environment
 
@@ -68,3 +69,9 @@ A set of pre-defined command line scripts have been configured to be used with {
 #### create-task
 
 Create a task within Windows Task Scheduler for running a python script that's in the package root directory of {{ cookiecutter.__package_name }}. Run the following command for more details: `poetry run create-task --help`
+
+### VSCode Presets
+
+Included in the root of {{ cookiecutter.__project_name }} is a `.vscode` folder that contains VSCode files with predefined settings. Recommended VSCode extensions are also included that can be installed for a more tailored development experience for this project. When this workspace is opened for the first time, VSCode will prompt to install the recommended extensions. You can also review this list through **Extensions -> Show Recommended Extensions command**.
+
+> Note: Workspace settings override user settings.
