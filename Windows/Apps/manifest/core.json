@@ -30,12 +30,6 @@
                   "PackageIdentifier": "Microsoft.DotNet.DesktopRuntime.7"
                 },
                 {
-                  "PackageIdentifier": "Microsoft.Edge"
-                },
-                {
-                  "PackageIdentifier": "Microsoft.OneDrive"
-                },
-                {
                   "PackageIdentifier": "Microsoft.PowerToys"
                 },
                 {
