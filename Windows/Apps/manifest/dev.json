@@ -1,7 +1,6 @@
 {
     "winget": {
         "$schema": "https://aka.ms/winget-packages.schema.2.0.json",
-        "CreationDate": "2023-06-26 14:54:28.455066",
         "Sources": [
             {
                 "Packages": [
@@ -53,6 +52,6 @@
                 }
             }
         ],
-        "WinGetVersion" : "1.5.1572"
+        "WinGetVersion": "1.5.1572"
     }
 }

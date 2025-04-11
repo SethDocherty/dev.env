@@ -1,109 +1,88 @@
 {
-    "winget": {
-        "$schema": "https://aka.ms/winget-packages.schema.2.0.json",
-        "CreationDate": "2023-06-26 14:54:28.455066",
-        "Sources": [
-            {
-              "Packages": [
-                {
-                  "PackageIdentifier": "7zip.7zip"
-                },
-                {
-                  "PackageIdentifier": "CodeSector.TeraCopy"
-                },
-                {
-                  "PackageIdentifier": "DominikReichl.KeePass"
-                },
-                {
-                  "PackageIdentifier": "flux.flux"
-                },
-                {
-                  "PackageIdentifier": "Git.Git"
-                },
-                {
-                  "PackageIdentifier": "IrfanSkiljan.IrfanView"
-                },
-                {
-                  "PackageIdentifier": "Microsoft.DotNet.DesktopRuntime.6"
-                },
-                {
-                  "PackageIdentifier": "Microsoft.DotNet.DesktopRuntime.7"
-                },
-                {
-                  "PackageIdentifier": "Microsoft.PowerToys"
-                },
-                {
-                  "PackageIdentifier": "Microsoft.VCRedist.2013.x86"
-                },
-                {
-                  "PackageIdentifier": "Microsoft.VCRedist.2015+.x64"
-                },
-                {
-                  "PackageIdentifier": "Microsoft.VCRedist.2015+.x86"
-                },
-                {
-                  "PackageIdentifier": "Microsoft.VisualStudioCode",
-                  "customArgs": "/SILENT /mergetasks=\"!runcode,addcontextmenufiles,addcontextmenufolders\""
-                },
-                {
-                  "PackageIdentifier": "Microsoft.WindowsTerminal"
-                },
-                {
-                  "PackageIdentifier": "Mozilla.Firefox"
-                },
-                {
-                  "PackageIdentifier": "Notepad++.Notepad++"
-                },
-                {
-                  "PackageIdentifier": "PDFArranger.PDFArranger"
-                },
-                {
-                  "PackageIdentifier": "PuTTY.PuTTY"
-                },
-                {
-                  "PackageIdentifier": "SomePythonThings.WingetUIStore"
-                },
-                {
-                  "PackageIdentifier": "VideoLAN.VLC"
-                },
-                {
-                  "PackageIdentifier": "Winamp.Winamp"
-                },
-                {
-                  "PackageIdentifier": "WinDirStat.WinDirStat"
-                },
-                {
-                  "PackageIdentifier": "WinSCP.WinSCP"
-                }
-              ],
-              "SourceDetails": {
-                "Argument": "https://cdn.winget.microsoft.com/cache",
-                "Identifier": "Microsoft.Winget.Source_8wekyb3d8bbwe",
-                "Name": "winget",
-                "Type": "Microsoft.PreIndexed.Package"
-              }
-            }
+  "winget": {
+    "$schema": "https://raw.githubusercontent.com/microsoft/winget-cli/refs/heads/master/schemas/JSON/packages/packages.schema.2.0.json",
+    "Sources": [
+      {
+        "Packages": [
+          {
+            "PackageIdentifier": "7zip.7zip"
+          },
+          {
+            "PackageIdentifier": "CodeSector.TeraCopy"
+          },
+          {
+            "PackageIdentifier": "DominikReichl.KeePass"
+          },
+          {
+            "PackageIdentifier": "flux.flux"
+          },
+          {
+            "PackageIdentifier": "Git.Git"
+          },
+          {
+            "PackageIdentifier": "IrfanSkiljan.IrfanView"
+          },
+          {
+            "PackageIdentifier": "Microsoft.DotNet.DesktopRuntime.6"
+          },
+          {
+            "PackageIdentifier": "Microsoft.DotNet.DesktopRuntime.7"
+          },
+          {
+            "PackageIdentifier": "Microsoft.PowerToys"
+          },
+          {
+            "PackageIdentifier": "Microsoft.VCRedist.2013.x86"
+          },
+          {
+            "PackageIdentifier": "Microsoft.VCRedist.2015+.x64"
+          },
+          {
+            "PackageIdentifier": "Microsoft.VCRedist.2015+.x86"
+          },
+          {
+            "PackageIdentifier": "Microsoft.VisualStudioCode",
+            "customArgs": "/SILENT /mergetasks=\"!runcode,addcontextmenufiles,addcontextmenufolders\""
+          },
+          {
+            "PackageIdentifier": "Microsoft.WindowsTerminal"
+          },
+          {
+            "PackageIdentifier": "Mozilla.Firefox"
+          },
+          {
+            "PackageIdentifier": "Notepad++.Notepad++"
+          },
+          {
+            "PackageIdentifier": "PDFArranger.PDFArranger"
+          },
+          {
+            "PackageIdentifier": "PuTTY.PuTTY"
+          },
+          {
+            "PackageIdentifier": "SomePythonThings.WingetUIStore"
+          },
+          {
+            "PackageIdentifier": "VideoLAN.VLC"
+          },
+          {
+            "PackageIdentifier": "Winamp.Winamp"
+          },
+          {
+            "PackageIdentifier": "WinDirStat.WinDirStat"
+          },
+          {
+            "PackageIdentifier": "WinSCP.WinSCP"
+          }
         ],
-        "WinGetVersion" : "1.5.1572"
-    },
-    "scoop": {
-        "apps": []
-    },
-    "chocolatey": {
-        "apps": [
-            {
-                "Name": "Chocolatey"
-            }
-        ]
-    },
-    "pip": {
-        "apps": []
-    },
-    "npm": {
-        "apps": [
-            {
-                "Name": "nodemon"
-            }
-        ]
-    }
+        "SourceDetails": {
+          "Argument": "https://cdn.winget.microsoft.com/cache",
+          "Identifier": "Microsoft.Winget.Source_8wekyb3d8bbwe",
+          "Name": "winget",
+          "Type": "Microsoft.PreIndexed.Package"
+        }
+      }
+    ],
+    "WinGetVersion": "1.5.1572"
+  }
 }
