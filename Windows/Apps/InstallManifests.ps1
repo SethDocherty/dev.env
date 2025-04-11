@@ -110,7 +110,7 @@ Function get_apps_from_manifest([string[]]$file_names) {
     
     # Update the "Packages" key in `manifestSources`
     $manifestSources[0].Packages = $non_custom_apps  
-    $predefinedJson.Sources = $manifestSources# | ConvertTo-Json -Depth 10
+    $predefinedJson.Sources = $manifestSources # | ConvertTo-Json -Depth 10
     return $predefinedJson
 }
 
@@ -134,6 +134,7 @@ function custom_app_install {
     
             # Run the custom installation command using winget
             winget install --id $custom_install.PackageIdentifier --exact --accept-source-agreements --disable-interactivity --accept-source-agreements --override $customArgs
+            # winget install --id $custom_install.PackageIdentifier $customArgs
 
         }
         else {
@@ -177,7 +178,7 @@ $winget_apps = "${env:temp}\winget_apps.json"
 $app_listing | Out-File -FilePath $winget_apps -Encoding UTF8
 
 # Install apps
-winget import --import-file $winget_apps
+winget import --import-file $winget_apps #--verbose --logs
 
 # Delete the temporary file once done
 Remove-Item -Path $winget_apps -Force
