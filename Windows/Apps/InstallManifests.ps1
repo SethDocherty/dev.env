@@ -64,7 +64,6 @@ Function get_apps_from_manifest([string[]]$file_names) {
     $schema_version = "https://aka.ms/winget-packages.schema.2.0.json"
     $predefinedJson = @{
         '$schema' = $schema_version
-        "CreationDate" = "2023-06-26 14:54:28.455066"
         "WinGetVersion" = "1.5.1572"
         'Sources' = @()
     }
