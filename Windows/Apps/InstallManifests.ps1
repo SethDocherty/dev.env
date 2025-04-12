@@ -232,7 +232,7 @@ $winget_apps = "${env:temp}\winget_apps.json"
 $app_listing | Out-File -FilePath $winget_apps -Encoding UTF8
 
 # Install apps
-winget import --import-file $winget_apps #--verbose --logs
+winget import --import-file $winget_apps --verbose --ignore-unavailable
 
 # Delete the temporary file once done
 Remove-Item -Path $winget_apps -Force
