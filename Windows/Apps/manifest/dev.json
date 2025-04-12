@@ -5,7 +5,13 @@
             {
                 "Packages": [
                     {
-                        "PackageIdentifier": "GitHub.GitHubDesktop"
+                        "PackageIdentifier": "GitKraken.cli"
+                    },
+                    {
+                        "PackageIdentifier": "Axosoft.GitKraken"
+                    },
+                    {
+                        "PackageIdentifier": "GitHub.cli"
                     },
                     {
                         "PackageIdentifier": "Docker.DockerDesktop"
@@ -17,7 +23,7 @@
                         "PackageIdentifier": "Postman.Postman"
                     },
                     {
-                        "PackageIdentifier": "PostgreSQL.PostgreSQL"
+                        "PackageIdentifier": "PostgreSQL.PostgreSQL.17"
                     },
                     {
                         "PackageIdentifier": "PostgreSQL.pgAdmin"
@@ -27,21 +33,6 @@
                     },
                     {
                         "PackageIdentifier": "OpenJS.NodeJS.LTS"
-                    },
-                    {
-                        "PackageIdentifier": "MongoDB.DatabaseTools"
-                    },
-                    {
-                        "PackageIdentifier": "MongoDB.Shell"
-                    },
-                    {
-                        "PackageIdentifier": "MongoDB.Compass.Full"
-                    },
-                    {
-                        "PackageIdentifier": "MongoDB.Server"
-                    },
-                    {
-                        "PackageIdentifier": "NoSQLBooster.NoSQLBooster"
                     }
                 ],
                 "SourceDetails": {
