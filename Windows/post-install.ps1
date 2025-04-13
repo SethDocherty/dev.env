@@ -26,6 +26,11 @@ foreach ($module in $modules) {
 
 # Add McFly to your PowerShell profile 
 Add-Content -Path $profilePath -Value "Invoke-Expression -Command $(mcfly init powershell | out-string)"
+Add-Content -Path $profilePath -Value "$env:MCFLY_RESULTS = 50"
+Add-Content -Path $profilePath -Value "$env:MCFLY_FUZZY = 2"
+Add-Content -Path $profilePath -Value '$env:MCFLY_INTERFACE_VIEW = "BOTTOM"'
+Add-Content -Path $profilePath -Value '$env:MCFLY_RESULTS_SORT = "LAST_RUN"'
+Add-Content -Path $profilePath -Value "$env:MCFLY_HISTORY_LIMIT = 10000"
 
 # Configure Git
 if (-not (Test-Path "$HOME\.gitconfig")) {
