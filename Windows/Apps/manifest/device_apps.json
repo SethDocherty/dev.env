@@ -24,6 +24,12 @@
                     },
                     {
                         "PackageIdentifier": "CrystalDewWorld.CrystalDiskMark"
+                    },
+                    {
+                        "PackageIdentifier": "ALCPU.CoreTemp"
+                    },
+                    {
+                        "PackageIdentifier": "Rem0o.FanControl"
                     }
                 ],
                 "SourceDetails": {
